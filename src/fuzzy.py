@@ -1,5 +1,6 @@
 """Normalized trust memberships and Mamdani inference for a single engine."""
 
+from collections.abc import Callable
 from math import isfinite
 
 
@@ -18,16 +19,23 @@ def memberships(score: float, *, include_medium: bool) -> dict[str, float]:
     }
 
 
+def smooth_memberships(score: float, *, include_medium: bool) -> dict[str, float]:
+    """Replace linear slopes with cubic S-curves over the same supports."""
+    degrees = memberships(score, include_medium=include_medium)
+    return {label: degree**2 * (3 - 2 * degree) for label, degree in degrees.items()}
+
+
 def infer(
     left: float,
     right: float,
     rules: dict[tuple[str, str], str],
     *,
     include_medium: bool,
+    membership_function: Callable[..., dict[str, float]] = memberships,
 ) -> float:
     """Apply min–max inference and a sampled centroid over [0, 1]."""
-    left_degrees = memberships(left, include_medium=include_medium)
-    right_degrees = memberships(right, include_medium=include_medium)
+    left_degrees = membership_function(left, include_medium=include_medium)
+    right_degrees = membership_function(right, include_medium=include_medium)
     activation = dict.fromkeys(("L", "M", "H"), 0.0)
 
     for (left_label, right_label), output_label in rules.items():
@@ -38,7 +46,7 @@ def infer(
     total_weight = 0.0
     for index in range(1001):
         point = index / 1000
-        output_degrees = memberships(point, include_medium=True)
+        output_degrees = membership_function(point, include_medium=True)
         weight = max(
             min(degree, activation[label])
             for label, degree in output_degrees.items()

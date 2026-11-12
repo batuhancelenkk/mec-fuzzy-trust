@@ -46,3 +46,21 @@ Elle seçilen örnek girdilerle ilk doğrulama:
 | 1, 1, 1, 1 | 0.833667 | 0.833667 | 0.585943 |
 
 İkinci satır Tablo 4'teki orta–orta → düşük kuralını gösterir. Üçüncü satırda ara puanlar üçüncü motorun hem orta hem yüksek üyeliklerini etkinleştirir.
+
+## Şekil 7(c) senaryosunun sentetik uyarlaması
+
+```powershell
+.\.venv\Scripts\python.exe -m experiments.baseline.failure_rate
+```
+
+Her koşulda üç MEC sunucusu, birer istek gönderen 100 cihaz ve 30 tekrar vardır. Yetkisiz cihaz sayısı 0 ile 100 arasında 20'şer artırılır. İki politika aynı cihaz etiketlerini ve başarısızlık için aynı rastgele çekilişleri kullanır. Güvene dayalı politika her isteği en yüksek FO3 puanlı sunucuya, kontrol politikası istekleri sunuculara sırayla gönderir. Oran, başarısız istek sayısının gönderilen 100 isteğe bölünmesiyle hesaplanır. Varsayılan tohum 42'dir. [Üretilen sonuç tablosu](results/tables/failure-rate.md)
+
+Makalede Şekil 7(c) için önerilen sistemde ortalama %15, SHA-256 tabanlı karşılaştırmada %64 başarısızlık bildirilir. Sentetik deneyde de yetkisiz cihaz sayısı arttıkça başarısızlık oranı artar. Bu eğilim, yetkisiz cihazlara daha yüksek başarısızlık olasılığı atanmasından kaynaklanır. Yüksek güven profiline daha düşük başarısızlık olasılığı atanması da güvene göre seçimi avantajlı kılar. Bu nedenle deney, varsayılan koşullarda aktarım davranışını gösterir. Makaledeki oranları doğrulamak için kimlik doğrulama, SARSA, SHA-256 karşılaştırma kolu ve ağ benzetimi gibi bileşenler gerekir. Deneyde sabit sunucu profilleri ve sınırsız kapasite kullanılır. Uyarlamanın MRR kapsamında kabulü teyit bekliyor.
+
+## Alternatif üyelik fonksiyonları
+
+```powershell
+.\.venv\Scripts\python.exe -m src.trust 0.9 0.8 0.7 0.6 --smooth
+```
+
+Alternatif sürüm üç motorda da her üyelik derecesi μ için μ²(3 − 2μ) uygular. Dönüşüm 0, 0.5 ve 1 derecelerini sabit tutup ara derecelerde doğrusal eğimleri kübik eğrilere dönüştürür. Kural tabanı, çıkarım ve durulaştırma iki sürümde ortaktır. Özgün katkı deneyinde iki sürüm aynı gürültülü girdilerle karşılaştırılacak.
