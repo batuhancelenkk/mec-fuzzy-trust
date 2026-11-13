@@ -1,0 +1,11 @@
+sigma,model,mean_absolute_fo3_change,selection_change_pct
+0.0,Dogrusal,0.000000,0.00
+0.0,Kubik,0.000000,0.00
+0.02,Dogrusal,0.007123,0.00
+0.02,Kubik,0.008156,0.00
+0.05,Dogrusal,0.015340,0.00
+0.05,Kubik,0.017171,0.00
+0.1,Dogrusal,0.027936,0.00
+0.1,Kubik,0.032747,0.00
+0.15,Dogrusal,0.038338,0.50
+0.15,Kubik,0.047606,0.50
