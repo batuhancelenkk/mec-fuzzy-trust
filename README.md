@@ -70,10 +70,9 @@ Alternatif sürüm üç motorda da her üyelik derecesi μ için μ²(3 − 2μ)
 Deneyi yeniden çalıştırmak için pip içeren bir ortamda deney bağımlılığını kur.
 
 ```powershell
-python -m venv --upgrade .venv
-.\.venv\Scripts\python.exe -m ensurepip
-.\.venv\Scripts\python.exe -m pip install -r requirements-experiments.txt
-.\.venv\Scripts\python.exe -m experiments.proposed.noise_robustness
+python -m venv .venv-experiments
+.\.venv-experiments\Scripts\python.exe -m pip install -r requirements-experiments.txt
+.\.venv-experiments\Scripts\python.exe -m experiments.proposed.noise_robustness
 ```
 
 Sentetik aktarım deneyindeki üç sabit sunucu profili kullanıldı. Her gürültü seviyesinde 200 tekrar yapıldı. Dört girdinin her birine sıfır ortalamalı Gauss gürültüsü eklendi ve sonuçlar [0, 1] aralığına kırpıldı. Tohum 42 ile üretilen aynı standart normal çekilişler iki modelde ve tüm seviyelerde kullanıldı. Her modelin gürültülü FO3 puanları kendi gürültüsüz puanlarına göre değerlendirildi. Eşit puanlarda listedeki ilk sunucu seçildi.
@@ -81,3 +80,9 @@ Sentetik aktarım deneyindeki üç sabit sunucu profili kullanıldı. Her gürü
 Test edilen pozitif gürültü seviyelerinin tamamında doğrusal modelin ortalama mutlak FO3 sapması daha düşüktü. Örneğin σ = 0,15 seviyesinde ortalama sapma doğrusal modelde 0,038338, kübik modelde 0,047606 oldu. Her modelde gürültüsüz durumda seçilen sunucu, bu seviyede 200 tekrarın birinde değişti (%0,5). Diğer seviyelerde iki modelde de seçim değişmedi. Bu gözlemler üç sabit profile ve kullanılan gürültü düzenine dayanıyor. Özellikle birbirine yakın güven puanlı sunucular için seçim kararlılığı ayrı bir deney gerektirir.
 
 [Sonuç tablosu](results/tables/noise-robustness.csv) · [Karşılaştırma grafiği](results/figures/noise-robustness.png)
+
+## Rapor, sunum ve demo
+
+- [Teknik rapor](report/report.pdf)
+- [Sunum](presentation/presentation.pdf)
+- [Canlı demo ve savunma akışı](presentation/demo.md)
