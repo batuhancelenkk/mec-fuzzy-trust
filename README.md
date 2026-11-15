@@ -83,12 +83,12 @@ Test edilen pozitif gürültü seviyelerinin tamamında doğrusal modelin ortala
 
 ## Rapor, sunum ve demo
 
-- [Teknik rapor](report/report.pdf)
-- [Sunum](presentation/presentation.pdf)
+- [Teknik rapor](report/1306220063_rapor.pdf)
+- [Sunum](presentation/1306220063_sunum.pdf)
 - [Canlı demo ve savunma akışı](presentation/demo.md)
 
 ## Son doğrulama ve teslim
 
 GitHub deposunu yeni bir klasöre klonladıktan sonra bu README'deki model ve deney komutlarını proje kökünden çalıştır. Demo çıktıları [demo rehberindeki tabloyla](presentation/demo.md) eşleşmelidir. Başarısızlık deneyi altı girdi koşulunu, gürültü deneyi ise beş seviye için iki modelin sonuçlarını üretir.
 
-Classroom tesliminde [teknik raporu](report/report.pdf), [sunumu](presentation/presentation.pdf) ve [GitHub depo bağlantısını](https://github.com/batuhancelenkk/mec-fuzzy-trust) ilgili alanlara ekle. Depo özel olduğu için değerlendiricinin erişimini ve Classroom'daki güncel teslim durumunu kontrol et.
+Classroom tesliminde [teknik raporu](report/1306220063_rapor.pdf), [sunumu](presentation/1306220063_sunum.pdf) ve [GitHub depo bağlantısını](https://github.com/batuhancelenkk/mec-fuzzy-trust) ilgili alanlara ekle. Depo herkese açıktır. Classroom'daki güncel teslim durumunu kontrol et.
